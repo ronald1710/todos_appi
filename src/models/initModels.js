@@ -1,5 +1,5 @@
 const Categories = require("./categories.model");
-const StatusCategories = require("./statusCategories.model");
+const StatusSubCategories = require ("./statusSubCategories.model")
 const SubCategories = require("./subcategories.model");
 const Todos = require("./todos.model");
 const Users = require("./users.model");
@@ -7,18 +7,24 @@ const Users = require("./users.model");
 const initModels = () => {
   //todos tiene 1 users
   //users tiene mucho todos
-  Todos.belongsTo(Users, { foreignkey: "userId" });
-  Users.hasMany(Todos, { foreignkey: "userId" });
+  Todos.belongsTo(Users, { foreignKey: "userId" });
+  Users.hasMany(Todos, { foreignKey: "userId" });
   //todos tiene 1 categories
   // categories tienen muchos todos
-  Todos.belongsTo(Categories, { foreignkey: "categoryId" })
-  Categories.hasMany(Todos, { foreignkey: "categoryId" })
-  //categories tiene 1 subcategories
-  //subcategories tienen muchos categories
-  Categories.belongsTo(SubCategories, { foreignkey: "subcategoryId" })  
-  SubCategories.hasMany(Categories, { foreignkey: "subcategoryId" }) 
-  
-  
+  Todos.belongsTo(Categories, { foreignKey: "categoryId" })
+  Categories.hasMany(Todos, { foreignKey: "categoryId" })
+  //subcategories tienen 1 categories
+  //categories tiene muchas subcategories
+  SubCategories.belongsTo(Categories, { foreignKey: "categoriesId" })
+  Categories.hasMany(SubCategories, { foreignKey: "categoriesId" })
+  //status tiene 1 todo
+  //todo tiene mucho status
+  StatusSubCategories.belongsTo(Todos, {foreignKey:"todosId"})
+  Todos.hasMany(StatusSubCategories, {foreignKey:"todosId"})
+  //status tiene 1subcategoria
+  //subcategories tienen muchos status
+  StatusSubCategories.belongsTo(SubCategories, { foreignKey: "subCategoriId" })
+  SubCategories.hasMany(StatusSubCategories, { foreignKey: "subCategoriId" })
 };
 
 module.exports = initModels;

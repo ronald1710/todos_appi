@@ -11,6 +11,11 @@ const SubCategories = db.define('subcategories', {
         type: DataTypes.STRING(30),
         allowNull: false
         },
+    categoriesId:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            field: 'categories_id'
+            }
 }, {
     timestamps: false
   })

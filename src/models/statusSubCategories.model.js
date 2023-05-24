@@ -1,22 +1,24 @@
 const db = require('../utils/database')
 const { DataTypes } = require ('sequelize')
 
-const StatusCategories = db.define('subcategories', {
+const StatusSubCategories = db.define('status_sub_categories', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
         },
-    sub_category_id: {
+    subCategoriId:{
         type: DataTypes.INTEGER,
         allowNull: false,
+        field: 'sub_category_id'
         },
-    sub_category_name_id: {
+    todosId:{
         type: DataTypes.INTEGER,
         allowNull: false,
-        },
+        field: 'todos_id'
+        }
 }, {
     timestamps: false
   })
 
-module.exports = StatusCategories
+module.exports = StatusSubCategories

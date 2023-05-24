@@ -1,5 +1,5 @@
 const Categories = require('../models/categories.model')
-const StatusCategories = require('../models/statusCategories.model')
+const status_subcategories = require ("../models/statusSubCategories.model")
 const SubCategories = require ('../models/subcategories.model')
 const Todos = require ('../models/todos.model')
 const Users = require ('../models/users.model')

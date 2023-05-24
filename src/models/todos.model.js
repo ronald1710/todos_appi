@@ -25,11 +25,6 @@ const Todos = db.define('todos', {
         allowNull: false,
         field: 'category_id'
         },
-    subcategoryId: {
-        type: DataTypes.INTEGER,
-        allowNull: false, 
-        field: 'sub_category_id_id'
-        },
     userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
