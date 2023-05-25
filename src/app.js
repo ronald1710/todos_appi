@@ -4,6 +4,7 @@ require ('dotenv').config()
 const initModels = require('./models/initModels');
 
 const usersRoutes = require('./routes/users.routes')
+const todosRoutes = require('./routes/todos.routers')
 
 
 const cors = require('cors')
@@ -26,6 +27,7 @@ app.get('/', (req,res) =>{
 })
 
 app.use(usersRoutes)
+app.use(todosRoutes)
 
 
 

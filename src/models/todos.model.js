@@ -18,7 +18,6 @@ const Todos = db.define('todos', {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
         allowNull: false,
-        defaultValue: false,
         },
     categoryId: {
         type: DataTypes.INTEGER,

@@ -19,12 +19,12 @@ const initModels = () => {
   Categories.hasMany(SubCategories, { foreignKey: "categoriesId" })
   //status tiene 1 todo
   //todo tiene mucho status
-  StatusSubCategories.belongsTo(Todos, {foreignKey:"todosId"})
-  Todos.hasMany(StatusSubCategories, {foreignKey:"todosId"})
+  StatusSubCategories.belongsTo(Todos, {onDelete: 'CASCADE',foreignKey:"todosId"})
+  Todos.hasMany(StatusSubCategories, {onDelete: 'CASCADE',foreignKey:"todosId"})
   //status tiene 1subcategoria
   //subcategories tienen muchos status
-  StatusSubCategories.belongsTo(SubCategories, { foreignKey: "subCategoriId" })
-  SubCategories.hasMany(StatusSubCategories, { foreignKey: "subCategoriId" })
+  StatusSubCategories.belongsTo(SubCategories, { onDelete: 'CASCADE',foreignKey: "subCategoriId" })
+  SubCategories.hasMany(StatusSubCategories, { onDelete: 'CASCADE',foreignKey: "subCategoriId" })
 };
 
 module.exports = initModels;
