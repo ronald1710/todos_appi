@@ -1,4 +1,5 @@
 const Categories = require('../models/categories.model')
+const StatusSubCategories = require('../models/statusSubCategories.model')
 const status_subcategories = require ("../models/statusSubCategories.model")
 const SubCategories = require ('../models/subcategories.model')
 const Todos = require ('../models/todos.model')
@@ -7,8 +8,9 @@ const Users = require ('../models/users.model')
 
 const createNewTodo = async (req, res) => {
     try {
-      const newTodo = req.body;
-      await Todos.create(newTodo);
+      const {subCategoriId, ...newTodo} = req.body;
+      const todo = await Todos.create(newTodo);
+      await StatusSubCategories.create({subCategoriId, todosId: todo.id});
       res.status(201).send();
     } catch (error) {
         res.status(400).json(error);
@@ -23,24 +25,27 @@ const getTodosByUserCategory = async(req,res) =>{
             attributes: {
                 exclude: ["password"]
             },
-            include:{ 
+            include:[{ 
                 model:Todos,
                 attributes: {
                     exclude: ["userId", "categoryId"]
                 },
                 include: [{
                     model: Categories,
-                    include:[
-                        {
-                            model: SubCategories,
-                        }
-                    ]
-                },
-                ],
-            },
+                },{
+                    model: status_subcategories,
+                    attributes:{
+                        exclude: [ "subCategoriId", "todosId" ]
+                    },
+                    include:{model: SubCategories,
+                    attributes: ["name"]}
+                    
+                }],
+            },],
         })
         res.json(todo)
     } catch (error) {
+        console.log(error)
         res.status(400).json(error);
     }
 }
