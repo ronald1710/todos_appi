@@ -5,7 +5,7 @@ const router = Router()
 
 router.post('/todo', createNewTodo)
 router.get('/todos/user/:id', getTodosByUserCategory)
-router.put('/todo/:userId', updateStatusCompleted)
+router.put('/todo/user/:userId', updateStatusCompleted)
 router.delete('/todo/:id', deleteTodos)
 
 module.exports = router;
